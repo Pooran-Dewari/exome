@@ -15,13 +15,14 @@ MD5.txt
 ```
 
 ### index genome
+Note: bwa indexing can't use multi-threading
 ```
 #!/bin/bash
  
 #$ -V -cwd
 #$ -l h_rt=04:00:00 
-#$ -l h_vmem=16G 
-#$ -pe sharedmem 4
+#$ -l h_vmem=32G 
+#$ -pe sharedmem 1
 #$ -P 
  
 . /etc/profile.d/modules.sh
