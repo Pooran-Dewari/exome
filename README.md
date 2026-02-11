@@ -34,3 +34,25 @@ module load igmm/apps/samtools/1.20
 bwa index GRCh38.primary_assembly.genome.fa
 samtools faidx GRCh38.primary_assembly.genome.fa
 ```
+### align
+```
+#!/bin/bash
+
+#$ -V -cwd
+#$ -l h_rt=12:00:00
+#$ -l h_vmem=16G
+#$ -pe sharedmem 4
+#$ -P 
+
+. /etc/profile.d/modules.sh
+
+
+module load roslin/bwa/0.7.18
+module load igmm/apps/samtools/1.20
+
+bwa mem -t 4 GRCh38.primary_assembly.genome.fa \
+/exports/eddie/scratch/pdewari/exome/index36_CCAACA_L002_R1_001.fastq.gz \
+/exports/eddie/scratch/pdewari/exome/index36_CCAACA_L002_R2_001.fastq.gz | \
+samtools sort -o exome.sorted.bam
+
+```
