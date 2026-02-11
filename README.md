@@ -15,7 +15,7 @@ MD5.txt
 ```
 
 ### index genome
-Note: bwa indexing can't use multi-threading
+Note: bwa indexing can't use multi-threading; this should take about 45 min.
 ```
 #!/bin/bash
  
