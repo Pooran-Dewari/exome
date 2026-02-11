@@ -42,6 +42,7 @@ samtools faidx GRCh38.primary_assembly.genome.fa
 
 
 ##### align
+Takes about 20 min.
 ```
 #!/bin/bash
 
