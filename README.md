@@ -65,7 +65,7 @@ samtools sort -o exome.sorted.bam
 
 ```
 ##### mark duplicates
-If picard gives error, try loading the picard module in eddie scratch and check it works, then submit the qsub
+If picard gives error, try loading the picard module in eddie scratch and check it works, then submit the qsub.  
 Takes about 10 min.
 ```
 #!/bin/bash
