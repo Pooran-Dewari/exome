@@ -64,3 +64,33 @@ bwa mem -t 4 GRCh38.primary_assembly.genome.fa \
 samtools sort -o exome.sorted.bam
 
 ```
+##### mark duplicates
+If picard gives error, try loading the picard module in eddie scratch and check it works, then submit the qsub
+Takes about 10 min.
+```
+#!/bin/bash
+
+#$ -V -cwd
+#$ -l h_rt=06:00:00
+#$ -l h_vmem=16G
+#$ -pe sharedmem 2
+#$ -P 
+
+
+
+
+module load igmm/apps/picard/3.1.1
+
+
+picard MarkDuplicates \
+-I exome.sorted.bam \
+-O exome.dedup.bam \
+-M metrics.txt \
+--CREATE_INDEX true \
+--VALIDATION_STRINGENCY SILENT
+
+module load igmm/apps/samtools/1.20
+
+samtools index  exome.dedup.bam
+
+```
