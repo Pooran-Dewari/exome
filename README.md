@@ -148,4 +148,28 @@ Only one single variant, so sampl.fa above could be empty.
 ##### extract sequence and apply the snp
 
 ```
+#!/bin/bash
+
+#$ -V -cwd
+#$ -l h_rt=06:00:00
+#$ -l h_vmem=16G
+#$ -pe sharedmem 2
+#$ -P roslin_bean_grp
+
+module load roslin/bcftools/1.20
+module load roslin/bedtools/2.31.1
+
+# extract ref exon sequences
+bedtools getfasta \
+  -fi GRCh38.primary_assembly.genome.fa \
+  -bed CPT1A.exons.merged.bed \
+  -s \
+  -fo CPT1A.reference.fa
+
+
+# apply variant
+bcftools consensus \
+  -f CPT1A.reference.fa \
+  CPT1A.vcf.gz > CPT1A.sample.fa
+
 ```
