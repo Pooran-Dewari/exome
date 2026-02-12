@@ -115,7 +115,7 @@ awk '$3=="exon"' gencode.v49.annotation.gtf | awk '{
     print $1"\t"($4-1)"\t"$5"\t"a[1]
 }' > CPT1A.exons.bed
 
-# merge bed files if duplicate entries
+# merge bed files to avoid duplicate calling later
 bedtools sort -i CPT1A.exons.bed | bedtools merge -i - > CPT1A.exons.merged.bed
 
 
